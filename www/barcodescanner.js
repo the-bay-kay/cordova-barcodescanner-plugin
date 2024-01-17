@@ -119,6 +119,27 @@ var ScannerLoader = function (require, exports, module) {
         ]);
     };
 
+
+    //-------------------------------------------------------------------
+    BarcodeScanner.prototype.close = function (successCallback, errorCallback) {
+        if (errorCallback == null) {
+            errorCallback = function () {
+            };
+        }
+
+        if (typeof errorCallback != "function") {
+            console.log("BarcodeScanner.scan failure: failure parameter not a function");
+            return;
+        }
+
+        if (typeof successCallback != "function") {
+            console.log("BarcodeScanner.scan failure: success callback parameter must be a function");
+            return;
+        }
+
+        // exec(successCallback, errorCallback, 'BarcodeScanner', 'close', []);
+    };
+
     var barcodeScanner = new BarcodeScanner();
     module.exports = barcodeScanner;
 
